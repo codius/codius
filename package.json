@@ -1,0 +1,20 @@
+{
+  "name": "@codius/root",
+  "version": "1.0.0",
+  "description": "Root package of the Codius monorepo",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codius/codius.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/codius/codius/issues"
+  },
+  "homepage": "https://github.com/codius/codius#readme"
+}
