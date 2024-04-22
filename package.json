@@ -4,6 +4,7 @@
   "description": "Root package of the Codius monorepo",
   "type": "module",
   "scripts": {
+    "check": "pnpm meta-updater --test",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/codius/codius/issues"
   },
-  "homepage": "https://github.com/codius/codius#readme"
+  "homepage": "https://github.com/codius/codius#readme",
+  "devDependencies": {
+    "@pnpm/meta-updater": "^1.0.0",
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  }
 }
