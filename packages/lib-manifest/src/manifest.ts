@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url"
 import Ajv, { type JSONSchemaType } from "ajv"
 
 export type Manifest = {
+  $schema: string;
   routes: Record<string, string>;
 }
 
@@ -14,8 +15,4 @@ const schema = JSON.parse(
   fs.readFileSync(path.resolve(dirname, "manifest.schema.json"), "utf8"),
 ) as JSONSchemaType<Manifest>
 
-const validate = ajv.compile(schema)
-
-export function validateManifest(manifest: Manifest): boolean {
-  return validate(manifest)
-}
+export const validateManifest = ajv.compile(schema)

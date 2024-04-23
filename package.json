@@ -7,7 +7,7 @@
     "check": "pnpm lint && pnpm meta-updater --test",
     "format": "xo --fix && pnpm meta-updater",
     "lint": "xo",
-    "test": "pnpm check",
+    "test": "vitest",
     "typecheck": "tsc --build"
   },
   "repository": {
@@ -25,6 +25,7 @@
     "@pnpm/meta-updater": "^1.0.0",
     "@types/node": "^20.12.7",
     "typescript": "^5.4.5",
+    "vitest": "^1.5.0",
     "xo": "^0.58.0"
   },
   "xo": {

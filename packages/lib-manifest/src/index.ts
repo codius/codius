@@ -1,1 +1,1 @@
-export { validateManifest } from "./manifest"
+export * from "./manifest"
