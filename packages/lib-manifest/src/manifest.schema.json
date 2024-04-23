@@ -14,7 +14,8 @@
           "pattern": "^static:(\\./|/)[a-zA-Z0-9_./-]+$"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "minProperties": 1
     }
   },
   "required": ["$schema", "routes"],

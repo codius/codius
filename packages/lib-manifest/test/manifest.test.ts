@@ -36,6 +36,14 @@ describe("validateManifest", () => {
     expect(validateManifest(manifest)).toBe(false)
   })
 
+  test("empty routes", ({ expect }) => {
+    const manifest = {
+      ...validManifest,
+      routes: {},
+    }
+    expect(validateManifest(manifest)).toBe(false)
+  })
+
   test("additional properties", ({ expect }) => {
     const manifest = {
       ...validManifest,
