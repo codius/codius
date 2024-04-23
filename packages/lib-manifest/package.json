@@ -1,0 +1,22 @@
+{
+  "name": "@codius/lib-manifest",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Codius manifest validation",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "xo \"./packages/lib-manifest\" --cwd \"../..\"",
+    "typecheck": "tsc --pretty"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@codius/meta-tsconfig": "workspace:^",
+    "ajv": "^8.12.0"
+  }
+}

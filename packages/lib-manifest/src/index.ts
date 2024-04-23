@@ -1,0 +1,1 @@
+export { validateManifest } from "./manifest"

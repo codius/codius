@@ -1,4 +1,8 @@
 {
   "include": [],
-  "references": []
+  "references": [
+    {
+      "path": "./packages/lib-manifest/tsconfig.json"
+    }
+  ]
 }

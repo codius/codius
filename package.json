@@ -4,8 +4,11 @@
   "description": "Root package of the Codius monorepo",
   "type": "module",
   "scripts": {
-    "check": "pnpm meta-updater --test",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "pnpm lint && pnpm meta-updater --test",
+    "format": "xo --fix && pnpm meta-updater",
+    "lint": "xo",
+    "test": "pnpm check",
+    "typecheck": "tsc --build"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,31 @@
   "devDependencies": {
     "@pnpm/meta-updater": "^1.0.0",
     "@types/node": "^20.12.7",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "xo": "^0.58.0"
+  },
+  "xo": {
+    "semicolon": false,
+    "space": true,
+    "rules": {
+      "@typescript-eslint/object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "@typescript-eslint/quotes": [
+        "error",
+        "double"
+      ],
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+      ]
+    }
   }
 }

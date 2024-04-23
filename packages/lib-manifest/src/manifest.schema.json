@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://codius.org/schema/manifest/v1"
+    },
+    "routes": {
+      "type": "object",
+      "patternProperties": {
+        "^=?/": {
+          "type": "string",
+          "pattern": "^static:(\\./|/)[a-zA-Z0-9_./-]+$"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["$schema", "routes"],
+  "additionalProperties": false
+}

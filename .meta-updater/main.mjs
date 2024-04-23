@@ -3,6 +3,21 @@ import { join } from "node:path"
 
 export default (workspaceDir) => {
   return {
+    "package.json": (manifest, dir) => {
+      const relativePath = dir.dir.replace(`${workspaceDir}/`, '');
+
+      return {
+        ...manifest,
+        scripts: {
+          ...manifest.scripts,
+          ...(manifest.name !== "@codius/root"
+            // https://github.com/xojs/xo/issues/701#issuecomment-1371075893
+            ? { lint: `xo "./${relativePath}" --cwd "../.."` }
+            : {}
+          )
+        }
+      }
+    },
     "tsconfig.json": (tsConfig, { manifest, dir }) => {
       if (!tsConfig) return tsConfig
 
