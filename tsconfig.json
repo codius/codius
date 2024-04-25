@@ -2,6 +2,9 @@
   "include": [],
   "references": [
     {
+      "path": "./packages/app-server/tsconfig.json"
+    },
+    {
       "path": "./packages/lib-manifest/tsconfig.json"
     }
   ]

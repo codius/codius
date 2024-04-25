@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import Ajv, { type JSONSchemaType } from "ajv"
+import Ajv, { type JSONSchemaType, type ValidateFunction } from "ajv"
 
 export type Manifest = {
   $schema: string;
@@ -15,4 +15,4 @@ const schema = JSON.parse(
   fs.readFileSync(path.resolve(dirname, "manifest.schema.json"), "utf8"),
 ) as JSONSchemaType<Manifest>
 
-export const validateManifest = ajv.compile(schema)
+export const validateManifest: ValidateFunction<Manifest> = ajv.compile(schema)

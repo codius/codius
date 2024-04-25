@@ -1,0 +1,9 @@
+{
+  "extends": "@codius/meta-tsconfig/vite-node.json",
+  "include": [
+    "**/*.ts"
+  ],
+  "compilerOptions": {
+    "outDir": "dist"
+  }
+}

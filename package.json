@@ -25,18 +25,28 @@
     "@pnpm/meta-updater": "^1.0.0",
     "@types/node": "^20.12.7",
     "typescript": "^5.4.5",
+    "vite-node": "^1.5.2",
     "vitest": "^1.5.0",
     "xo": "^0.58.0"
   },
   "xo": {
     "semicolon": false,
     "space": true,
+    "overrides": [
+      {
+        "files": ["**/*.ts", "**/*.tsx"],
+        "rules": {
+          "@typescript-eslint/object-curly-spacing": ["error", "always"],
+          "@typescript-eslint/quotes": ["error", "double"]
+        }
+      }
+    ],
     "rules": {
-      "@typescript-eslint/object-curly-spacing": [
+      "object-curly-spacing": [
         "error",
         "always"
       ],
-      "@typescript-eslint/quotes": [
+      "quotes": [
         "error",
         "double"
       ],
@@ -49,7 +59,8 @@
           "ts": "never",
           "tsx": "never"
         }
-      ]
+      ],
+      "n/prefer-global/process": "off"
     }
   }
 }
