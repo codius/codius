@@ -14,7 +14,9 @@
   "dependencies": {
     "debug": "^4.3.4",
     "express": "^4.19.2",
-    "http-errors": "^2.0.0"
+    "http-errors": "^2.0.0",
+    "nanoid": "^5.0.7",
+    "zod": "^3.23.4"
   },
   "devDependencies": {
     "@codius/lib-manifest": "workspace:^",
