@@ -1,0 +1,21 @@
+{
+  "name": "@codius/app-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "type": "module",
+  "scripts": {
+		"deploy": "wrangler deploy src/index.ts",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "xo \"./packages/app-server\" --cwd \"../..\"",
+    "typecheck": "tsc --pretty"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240512.0",
+    "@codius/meta-tsconfig": "workspace:^",
+    "wrangler": "^3.57.0"
+  }
+}

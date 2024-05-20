@@ -1,0 +1,9 @@
+{
+  "extends": "@codius/meta-tsconfig/base.json",
+  "include": [
+    "**/*.ts"
+  ],
+  "compilerOptions": {
+    "types": ["@cloudflare/workers-types"]
+  }
+}
