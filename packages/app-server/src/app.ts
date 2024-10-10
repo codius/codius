@@ -2,7 +2,6 @@ import createError from "http-errors"
 import express, {
   type Application, type Request, type Response, type NextFunction,
 } from "express"
-import { appProxy } from "./middlewares/app-proxy"
 import indexRouter from "./routes/index"
 import appsRouter from "./routes/apps"
 
@@ -10,8 +9,6 @@ const app: Application = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-app.use(appProxy)
 
 app.use("/", indexRouter)
 app.use("/apps", appsRouter)

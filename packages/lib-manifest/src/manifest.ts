@@ -2,10 +2,12 @@ import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import Ajv, { type JSONSchemaType, type ValidateFunction } from "ajv"
+import type { protos } from "@google-cloud/compute"
 
 export type Manifest = {
   $schema: string;
   routes: Record<string, string>;
+  // Dynamic?: Record<string, string>;
 }
 
 const ajv = new Ajv()
@@ -16,6 +18,30 @@ const schema = JSON.parse(
 ) as JSONSchemaType<Manifest>
 
 export const validateManifest: ValidateFunction<Manifest> = ajv.compile(schema)
+
+// Manifest to Google Cloud URL map
+export const toUrlMap = (manifest: Manifest): protos.google.cloud.compute.v1.IPathMatcher[] => {
+  const urlMap: protos.google.cloud.compute.v1.IPathMatcher[] = []
+
+  for (const [route, target] of Object.entries(manifest.routes)) {
+    const pathMatcher: protos.google.cloud.compute.v1.IPathMatcher = {
+      pathRules: [
+        {
+          paths: [route],
+          routeAction: {
+            urlRewrite: {
+              pathPrefixRewrite: target,
+            },
+          },
+        },
+      ],
+    }
+
+    urlMap.push(pathMatcher)
+  }
+
+  return urlMap
+}
 
 export const getRoute = (manifest: Manifest, urlPath: string): string | undefined => {
   let matchedPath: string | undefined

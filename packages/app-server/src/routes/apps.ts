@@ -3,6 +3,8 @@ import { customAlphabet } from "nanoid"
 import { z } from "zod"
 import { validateManifest } from "@codius/lib-manifest"
 import { database } from "../database"
+// TODO: add storage to express request
+import { createBucket } from "../google-cloud/storage"
 
 // eslint-disable-next-line new-cap
 const router: Router = express.Router()
@@ -29,19 +31,36 @@ router.post("/", async (request, response, _next) => {
     const { githubUrl } = postBodySchema.parse(request.body)
 
     const manifestUrl = `${JSDELIVR_URL}${githubUrl}/codius.json`
+    console.log({ manifestUrl })
     const manifestResponse = await fetch(manifestUrl)
-    const manifest = (await manifestResponse.json()) as unknown
+    const manifestText = await manifestResponse.text()
 
-    if (!validateManifest(manifest)) {
-      response.status(400).send("Invalid manifest")
+    try {
+      const manifest = JSON.parse(manifestText) as unknown
+
+      if (!validateManifest(manifest)) {
+        response.status(400).send("Invalid manifest")
+        return
+      }
+    } catch {
+      response.status(400).send("Invalid JSON")
       return
     }
 
+    // If (manifest.dynamic) {
+    //   // generate manifest
+    // }
+
     const id = nanoid()
-    database.apps[id] = { githubUrl, manifest }
+
+    const bucket = await createBucket(id)
+    await bucket.file("codius.json").save(Buffer.from(manifestText), {
+      contentType: "application/json",
+    })
+    // Database.apps[id] = { githubUrl, manifest }
 
     response.location(`http://${id}.localhost:3000/`)
-    response.status(201).send(manifest)
+    response.status(201)// .send(manifest)
   } catch (error) {
     if (error instanceof z.ZodError) {
       response.status(400).send("Invalid request body")

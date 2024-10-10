@@ -60,7 +60,8 @@
           "tsx": "never"
         }
       ],
-      "n/prefer-global/process": "off"
+      "n/prefer-global/process": "off",
+      "semi": ["error", "never"]
     }
   }
 }

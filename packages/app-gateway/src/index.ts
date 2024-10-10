@@ -27,7 +27,7 @@ export type Env = {
 
 const handler = {
   async fetch(request: Request, env: Env, context: ExecutionContext): Promise<Response> {
-    return new Response("Hello World!")
+    return fetch(request)
   },
 }
 
